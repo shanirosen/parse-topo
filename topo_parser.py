@@ -1,7 +1,7 @@
 import re
 from args_parser import arg_parser
 
-PATH = r"/Users/shanirosen/Desktop/TopologyFiles/small_topo_file"
+PATH = r"./small_topo_file"
 sysimgguid_pattern = r"sysimgguid=(.*)"
 hostguid_pattern = r"(?:switchguid|caguid)\=(.*)"
 connection_pattern = r"\[([\d]+)\][\s]?([^\[]*)\[([\d]+)\]"

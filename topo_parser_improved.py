@@ -11,7 +11,7 @@ connection_pattern = r"\[([\d]+)\][\s]?([^\[]*)\[([\d]+)\]"
 
 def main():
     args = arg_parser()
-    connections, metadata = parse_topology(args.path,args.print_chunk, args.print)
+    parse_topology(args.path, args.print)
 
 def parse_topology(path: str, print_chunk:bool):
     """

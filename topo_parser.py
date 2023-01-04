@@ -24,8 +24,8 @@ def parse_topology(path: str):
         connections (dict): a dictionary that describes for each host its connections.
         metadata (dict): a dictionary with hostguid as key and sysimgguid as value.
     """
-    connections = {}
-    metadata = {}
+    connections = {} # a dict describing all connections
+    metadata = {} # a dict describing the match between hostguid and sysimgguid
 
     with open(path, "r") as f:
         data = f.read()
@@ -35,7 +35,7 @@ def parse_topology(path: str):
     for chunk in splitted_data:
         hostguid = re.findall(hostguid_pattern, chunk)
 
-        if len(hostguid) == 0:
+        if len(hostguid) == 0: #empty list
             continue
 
         hostguid = hostguid[0]
@@ -45,7 +45,7 @@ def parse_topology(path: str):
         all_connections = re.findall(connection_pattern, chunk)
 
         for connection in all_connections:
-            host = connection[1].replace(' \t', '')
+            host = connection[1].replace(' \t', '').strip()
             src_port = connection[0]
             dst_port = connection[2]
             connections[hostguid][host] = (src_port, dst_port)
@@ -75,6 +75,7 @@ def print_topology(connections: dict, metadata: dict):
             string_to_print = parse_remote_host(item)
             print(string_to_print)
         print("\n")
+
 
 if __name__ == "__main__":
     main()
